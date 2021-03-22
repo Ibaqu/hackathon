@@ -5,3 +5,9 @@ version = "0.1.0"
 
 [build-options]
 observabilityIncluded = true
+
+[[platform.java11.dependency]]
+path = "./resources/lib/mysql-connector-java-8.0.21.jar"
+artifactId = "mysql-connector-java"
+groupId = "mysql"
+version = "8.0.21"

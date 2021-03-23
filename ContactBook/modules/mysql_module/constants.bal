@@ -10,7 +10,7 @@ string database = "contacts";
 public type Contact record {|
     string Name;
     string Address;
-    int Phone;
+    string Phone;
     string Email;
 |};
 

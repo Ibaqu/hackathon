@@ -7,6 +7,13 @@ int port = 3306;
 
 string database = "contacts";
 
+public type Contact record {|
+    string Name;
+    string Address;
+    int Phone;
+    string Email;
+|};
+
 // Create DBClient
 mysql:Client dbClient = checkpanic new (host, user, password, database, port);
 

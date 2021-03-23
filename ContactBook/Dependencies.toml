@@ -1,6 +1,11 @@
 [[dependency]]
 org = "ballerina"
-name = "sql"
+name = "observe"
+version = "0.9.0"
+
+[[dependency]]
+org = "ballerina"
+name = "io"
 version = "0.6.0-alpha5"
 
 [[dependency]]
@@ -10,12 +15,7 @@ version = "0.7.0-alpha5"
 
 [[dependency]]
 org = "ballerina"
-name = "observe"
-version = "0.9.0"
-
-[[dependency]]
-org = "ballerina"
-name = "io"
+name = "sql"
 version = "0.6.0-alpha5"
 
 

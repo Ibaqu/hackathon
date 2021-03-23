@@ -1,26 +1,34 @@
 import ballerina/io;
 import ballerina/sql;
 
-public function addContact() {
+public function addContact(Contact contact) {
     io:println("[MYSQL_CLIENT] [AddContact] Adding contact to database");
 
-    string query = "INSERT INTO Contact (Name, Address, Phone, Email) VALUES ('Aquib', '160/43', 2213445, 'aquib.zt@gmail.com')";
-    sql:ExecutionResult result = checkpanic dbClient->execute(query);
+    sql:ParameterizedQuery insertQuery = 
+        `INSERT INTO Contact (Name, Address, Phone, Email)
+        VALUES (${contact.Name}, ${contact.Address}, ${contact.Phone}, ${contact.Email})`;
+
+    sql:ExecutionResult result = checkpanic dbClient->execute(insertQuery);
 }
 
-public function updateContact() {
+public function updateContact(Contact contact, int ID) {
     io:println("[MYSQL_CLIENT] [updateContact] Updating contact in database");
 
-    string query = "UPDATE Contact SET Name = 'Amir' WHERE ID = 2";
+    sql:ParameterizedQuery updateQuery = 
+        `UPDATE Contact
+        SET Name = ${contact.Name}, Address = ${contact.Address}, Phone = ${contact.Phone}, Email = ${contact.Email}
+        WHERE ID = ${ID}`;
 
-    sql:ExecutionResult result = checkpanic dbClient->execute(query);
+    sql:ExecutionResult result = checkpanic dbClient->execute(updateQuery);
 }
 
-public function deleteContact() {
+public function deleteContact(int ID) {
     io:println("[MYSQL_CLIENT] [deleteContact] Deleting contact from database");
 
-    string query = "DELETE FROM Contact WHERE `ID` = 2";
-    sql:ExecutionResult result = checkpanic dbClient->execute(query);
+    sql:ParameterizedQuery deleteQuery = `
+        DELETE FROM Contact WHERE ID = ${ID}`;
+
+    sql:ExecutionResult result = checkpanic dbClient->execute(deleteQuery);
 }
 
 public function listContacts() {

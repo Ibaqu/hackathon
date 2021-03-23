@@ -1,29 +1,13 @@
-import ballerina/io;
-import ballerina/sql;
-import ballerinax/mysql;
-
+import ContactBook.mysql_module;
 
 public function main() {
 
-    // SQL Information
-    string host = "localhost";
-    string user = "root";
-    string password = "root";
-    int port = 3306;
+    mysql_module:listContacts();
 
-    // Database
-    string database = "contacts";
+    mysql_module:addContact();
 
-    io:println("MYSQL client created");
-    mysql:Client dbClient = checkpanic new (host, user, password, database, port);
+    mysql_module:listContacts();
 
-    // Create table query
-    string query = "CREATE TABLE Test(Name varchar(20), ID int)";
+    mysql_module:deleteContact();
 
-    // Execute query
-    sql:ExecutionResult result = checkpanic dbClient->execute(query);
-
-    io:print("Affected Row count : " , result.affectedRowCount);
-
-    checkpanic dbClient.close();
 }
